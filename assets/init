@@ -83,4 +83,5 @@ case "${DB_TYPE}" in
     ;;
 esac
 
-/opt/tomcat/bin/catalina.sh run
+export JPDA_SUSPEND=y
+/opt/tomcat/bin/catalina.sh jpda run
