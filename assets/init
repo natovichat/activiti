@@ -83,5 +83,10 @@ case "${DB_TYPE}" in
     ;;
 esac
 
-export JPDA_SUSPEND=y
+wget http://mickey.rnd.local/mybitat/dev/activitiBean/activitiMybitatBeans-1.0-SNAPSHOT-jar-with-dependencies.jar
+cp activitiMybitatBeans-*-jar-with-dependencies.jar /opt/tomcat/webapps/activiti-explorer/WEB-INF/lib/
+mv activitiMybitatBeans-*-jar-with-dependencies.jar /opt/tomcat/webapps/activiti-rest/WEB-INF/lib/
+ 
+ sed -i 's/<\'/'beans>/ \n <bean id="mybitatCases" class="com.mybitat.activitiBeans.Cases"\'/'>\n <bean id="mybitatNotifications" class="com.mybitat.activitiBeans.Notifications"\'/'>\n <\'/'beans>/g' /opt/tomcat/webapps/activiti-explorer/WEB-INF/classes/activiti-custom-context.xml
+ sed -i 's/<\'/'beans>/ \n <bean id="mybitatCases" class="com.mybitat.activitiBeans.Cases"\'/'>\n <bean id="mybitatNotifications" class="com.mybitat.activitiBeans.Notifications"\'/'>\n <\'/'beans>/g' /opt/tomcat/webapps/activiti-rest/WEB-INF/classes/activiti-custom-context.xml
 /opt/tomcat/bin/catalina.sh jpda run
