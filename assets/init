@@ -35,7 +35,7 @@ fi
 ##
 ## NOTE: this is only meant for getting the quick start guide to work .
 ##
-if [ -z "${DB_HOST}" -a -n "$(which docker)" -a -S /var/run/docker.sock ]; then
+if [ -z "${DB_HOST}"]; then
   echo "Database connection details not specified."
   echo "Will try to spin up a new mysql image with the name mysql-activiti."
   echo "Please manually configure the database connection in production."
